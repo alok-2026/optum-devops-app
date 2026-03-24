@@ -1,19 +1,26 @@
 const express = require('express');
 const app = express();
 
-const PORT = 3000;
+// Environment variables
+const PORT = process.env.PORT || 3000;
+const MESSAGE = process.env.MESSAGE || "App is running successfully 🚀";
 
-// Health check route
+// Root route
 app.get('/', (req, res) => {
-    res.send('App is running successfully 🚀');
+    res.send(MESSAGE);
 });
 
 // Sample API route
 app.get('/api/data', (req, res) => {
     res.json({
-        message: "Hello from Optum DevOps Project",
+        message: MESSAGE,
         status: "Success"
     });
+});
+
+// Health check route (important for real-world)
+app.get('/health', (req, res) => {
+    res.status(200).send("OK");
 });
 
 // Start server
