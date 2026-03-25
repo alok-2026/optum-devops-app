@@ -2,15 +2,14 @@ const express = require('express');
 const app = express();
 
 // Environment variables
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const MESSAGE = process.env.MESSAGE || "App is running successfully 🚀";
 
-// Root route
+// Routes
 app.get('/', (req, res) => {
     res.send(MESSAGE);
 });
 
-// Sample API route
 app.get('/api/data', (req, res) => {
     res.json({
         message: MESSAGE,
@@ -18,7 +17,6 @@ app.get('/api/data', (req, res) => {
     });
 });
 
-// Health check route (important for real-world)
 app.get('/health', (req, res) => {
     res.status(200).send("OK");
 });
